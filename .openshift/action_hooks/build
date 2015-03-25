@@ -1,0 +1,2 @@
+mkdir $OPENSHIFT_REPO_DIR/deployments
+cp $OPENSHIFT_REPO_DIR/target/frameworks.war $OPENSHIFT_REPO_DIR/deployments/frameworks.war
