@@ -14,6 +14,7 @@ public class DataSourceConfig {
 	public DataSource getDataSource() {
 		String host = System.getProperty("OPENSHIFT_POSTGRESQL_DB_HOST");
 		String port = System.getProperty("OPENSHIFT_POSTGRESQL_DB_PORT");
+
 		if (StringUtils.isNotBlank(host) && StringUtils.isNoneBlank(port)) {
 			PGPoolingDataSource ds = new PGPoolingDataSource();
 			ds.setDataSourceName("FrameworksDS");
