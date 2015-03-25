@@ -8,7 +8,7 @@
 	<name>frameworks Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<java-version>1.8</java-version>
+		<java-version>1.7</java-version>
 		<spring.version>4.1.5.RELEASE</spring.version>
 		<spring.security.version>3.2.6.RELEASE</spring.security.version>
 	</properties>
@@ -101,8 +101,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>1.7</source>
+					<target>1.7</target>
 					<compilerArgument>-Xlint:all</compilerArgument>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
