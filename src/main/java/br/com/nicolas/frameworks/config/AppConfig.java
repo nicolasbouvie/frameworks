@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 
 @Configuration
-@ComponentScan("br.com.niggas")
+@ComponentScan("br.com.nicolas.frameworks")
 @EnableWebMvc
 @EnableAspectJAutoProxy
 @Import({DataSourceConfig.class, SecurityConfig.class})
