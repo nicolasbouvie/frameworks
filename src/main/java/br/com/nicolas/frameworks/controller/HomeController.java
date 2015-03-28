@@ -1,9 +1,10 @@
 
 package br.com.nicolas.frameworks.controller;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,10 +15,10 @@ import br.com.nicolas.frameworks.repository.UserRepository;
 @Controller
 @RequestMapping("/")
 public class HomeController {
-	
-	@Autowired
+
+	@Inject
 	private UserRepository userRepo;
-	
+
 	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
 	public ModelAndView welcomePage() {
 		ModelAndView model = new ModelAndView();
@@ -26,7 +27,8 @@ public class HomeController {
 		model.setViewName("hello");
 		return model;
 	}
- 
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/admin**", method = RequestMethod.GET)
 	public ModelAndView adminPage() {
 		ModelAndView model = new ModelAndView();
@@ -37,7 +39,8 @@ public class HomeController {
  
 		return model;
 	}
- 
+
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')")
 	@RequestMapping(value = "/dba**", method = RequestMethod.GET)
 	public ModelAndView dbaPage() {
 		ModelAndView model = new ModelAndView();
@@ -47,7 +50,7 @@ public class HomeController {
  
 		return model;
 	}
-	
+
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request) {
 		request.getSession().invalidate();

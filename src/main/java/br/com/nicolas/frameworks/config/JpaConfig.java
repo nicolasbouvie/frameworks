@@ -2,9 +2,9 @@ package br.com.nicolas.frameworks.config;
 
 import java.util.Collections;
 
+import javax.inject.Inject;
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -17,10 +17,10 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 @PropertySource("classpath:/hibernate.properties")
 public class JpaConfig {
 	
-	@Autowired 
+	@Inject 
 	private Environment env;
 	
-    @Autowired 
+	@Inject 
     private DataSource dataSource;
     
     @Bean
