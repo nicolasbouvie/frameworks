@@ -13,21 +13,21 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.nicolas.frameworks.config.AppConfig;
-import br.com.nicolas.frameworks.domain.User;
+import br.com.nicolas.frameworks.domain.Usuario;
 
 
 @ContextConfiguration(classes={AppConfig.class})
 @Transactional
 @TransactionConfiguration(defaultRollback=true)
 @RunWith(SpringJUnit4ClassRunner.class)
-public class UserRepositoryTest {
+public class UsuarioRepositoryTest {
 	
 	@Inject
-	private UserRepository userRepo;
+	private UsuarioRepository userRepo;
     
     @Test
     public void testFindAll() {
-        List<User> users = userRepo.findAll();
+        List<Usuario> users = userRepo.findAll();
         Assert.assertEquals(3, users.size());
     }
 }

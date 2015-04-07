@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="default" template="/WEB-INF/views/templates/default/main.jsp">
+		<put-attribute name="title" value="Vendas"/>
+		<put-attribute name="defaultCSS" value="/WEB-INF/views/templates/default/defaultCSS.jsp"/>
+		<put-attribute name="css" value=""/>
+		<put-attribute name="nav" value="/WEB-INF/views/templates/default/nav.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="defaultScript" value="/WEB-INF/views/templates/default/defaultScript.jsp"></put-attribute>
+		<put-attribute name="script" value=""/>
+	</definition>
+</tiles-definitions>
