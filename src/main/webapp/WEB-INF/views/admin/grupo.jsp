@@ -10,19 +10,23 @@
 				<tr>
 					<th>#</th>
 					<th>Nome</th>
-					<th>Ação</th>
+					<th>Ação
+						<button class="btn btn-success btn-xs" type="button" onclick="novo()">
+							<span aria-hidden="true" class="glyphicon glyphicon-plus"></span>
+						</button>
+					</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${grupos}" var="grupo">
 					<tr>
-						<td>${grupo.id}</td>
-						<td>${grupo.authority}</td>
+						<td class="f_id">${grupo.id}</td>
+						<td class="f_nome">${grupo.authority}</td>
 						<td>
 							<button class="btn btn-primary btn-xs" type="button" onclick="editar(this)">
 								<span aria-hidden="true" class="glyphicon glyphicon-edit"></span>
 							</button>
-							<button class="btn btn-danger btn-xs" type="button" onclick="remover(this)">
+							<button class="btn btn-danger btn-xs" type="button" onclick="remover('admin/grupo', ${grupo.id})">
 								<span aria-hidden="true" class="glyphicon glyphicon-trash"></span>
 							</button>
 						</td>
@@ -30,7 +34,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<form action="save" method="post" style="display: none;">
+		<form action="grupo/save" method="post" style="display: none;">
 			<input type="hidden" id="id" name="id"/>
 			<div class="form-group">
 				<label for="nome">Nome</label>
@@ -38,22 +42,5 @@
 			</div>
 			<button type="submit" class="btn btn-default">Salvar</button>
 		</form>
-	</tiles:putAttribute>
-	
-	<tiles:putAttribute name="script">
-		<script type="text/javascript">
-			function editar(el) {
-				var tds = $(el).parent().parent().find("td");
-				$("form").slideDown();
-				$("#id")   .val($(tds[0]).text());
-				$("#nome") .val($(tds[1]).text());
-				$("#password, #confPassword") .val("");
-			}
-			
-			function remover(el) {
-				var id = $(el).parent().parent().find("td:eq(0)").text();
-				alert("Remover "+id)
-			}
-		</script>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

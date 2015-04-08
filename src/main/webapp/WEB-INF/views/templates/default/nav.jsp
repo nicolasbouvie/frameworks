@@ -15,7 +15,7 @@
 		</div>
 		<div class="navbar-collapse collapse" id="navbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="${pageContext.request.contextPath}">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}">Home</a></li>
 				<li><a href="${pageContext.request.contextPath}/venda">Vendas</a></li>
     			
     			<security:authorize access="hasRole('admin')">
@@ -27,7 +27,6 @@
 							<li><a href="${pageContext.request.contextPath}/admin/usuario">Usuários</a></li>
 							<li><a href="${pageContext.request.contextPath}/admin/grupo">Grupos</a></li>
 							<li><a href="${pageContext.request.contextPath}/admin/configuracao">Configuração</a></li>
-							<li><a href="${pageContext.request.contextPath}/admin/venda">Vendas</a></li>
 						</ul>
 					</li>
 				</security:authorize>

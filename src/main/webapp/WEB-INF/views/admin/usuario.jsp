@@ -11,20 +11,26 @@
 					<th>#</th>
 					<th>Nome</th>
 					<th>Email</th>
-					<th>Ação</th>
+					<th>Ação
+						<button class="btn btn-success btn-xs" type="button" onclick="novo()">
+							<span aria-hidden="true" class="glyphicon glyphicon-plus"></span>
+						</button>
+					</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${users}" var="user">
 					<tr>
-						<td>${user.id}</td>
-						<td>${user.nome}</td>
-						<td>${user.username}</td>
+						<td class="f_id">${user.id}</td>
+						<td class="f_nome">${user.nome}</td>
+						<td class="f_email">${user.username}</td>
+						<td class="f_password" style="display:none;"></td>
+						<td class="f_confPassword" style="display:none;"></td>
 						<td>
 							<button class="btn btn-primary btn-xs" type="button" onclick="editar(this)">
 								<span aria-hidden="true" class="glyphicon glyphicon-edit"></span>
 							</button>
-							<button class="btn btn-danger btn-xs" type="button" onclick="remover(this)">
+							<button class="btn btn-danger btn-xs" type="button" onclick="remover('admin/usuario', ${user.id})">
 								<span aria-hidden="true" class="glyphicon glyphicon-trash"></span>
 							</button>
 						</td>
@@ -52,23 +58,5 @@
 			</div>
 			<button type="submit" class="btn btn-default">Salvar</button>
 		</form>
-	</tiles:putAttribute>
-	
-	<tiles:putAttribute name="script">
-		<script type="text/javascript">
-			function editar(el) {
-				var tds = $(el).parent().parent().find("td");
-				$("form").slideDown();
-				$("#id")   .val($(tds[0]).text());
-				$("#email").val($(tds[1]).text());
-				$("#nome") .val($(tds[2]).text());
-				$("#password, #confPassword") .val("");
-			}
-			
-			function remover(el) {
-				var id = $(el).parent().parent().find("td:eq(0)").text();
-				alert("Remover "+id)
-			}
-		</script>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

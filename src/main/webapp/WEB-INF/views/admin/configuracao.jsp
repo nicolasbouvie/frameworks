@@ -4,7 +4,7 @@
 
 <tiles:insertDefinition name="default">
 	<tiles:putAttribute name="body">
-		<h3>Configurações</h3>
+		<h3>Configuração</h3>
 		<table class="table">
 			<thead>
 				<tr>
@@ -13,21 +13,26 @@
 					<th>Data Fim</th>
 					<th>Valor</th>
 					<th>Valor Venda</th>
+					<th>Ação
+						<button class="btn btn-success btn-xs" type="button" onclick="novo()">
+							<span aria-hidden="true" class="glyphicon glyphicon-plus"></span>
+						</button>
+					</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${configs}" var="config">
 					<tr>
-						<td>${config.id}</td>
-						<td>${config.dataInicio}</td>
-						<td>${not empty config.dataFim ? config.dataFim : '-'}</td>
-						<td>${config.valor}</td>
-						<td>${config.valorVenda}</td>
+						<td class="f_id">${config.id}</td>
+						<td class="f_dataInicio">${config.dataInicio}</td>
+						<td class="f_dataFim">${not empty config.dataFim ? config.dataFim : '-'}</td>
+						<td class="f_valor">${config.valor}</td>
+						<td class="f_valorVenda">${config.valorVenda}</td>
 						<td>
 							<button class="btn btn-primary btn-xs" type="button" onclick="editar(this)">
 								<span aria-hidden="true" class="glyphicon glyphicon-edit"></span>
 							</button>
-							<button class="btn btn-danger btn-xs" type="button" onclick="remover(this)">
+							<button class="btn btn-danger btn-xs" type="button" onclick="remover('admin/configuracao', ${config.id})">
 								<span aria-hidden="true" class="glyphicon glyphicon-trash"></span>
 							</button>
 						</td>
@@ -55,24 +60,5 @@
 			</div>
 			<button type="submit" class="btn btn-default">Salvar</button>
 		</form>
-	</tiles:putAttribute>
-	
-	<tiles:putAttribute name="script">
-		<script type="text/javascript">
-			function editar(el) {
-				var tds = $(el).parent().parent().find("td");
-				$("form").slideDown();
-				$("#id")        .val($(tds[0]).text());
-				$("#dataInicio").val($(tds[1]).text());
-				$("#dataFim")   .val($(tds[2]).text());
-				$("#valor")     .val($(tds[3]).text());
-				$("#valorVenda").val($(tds[4]).text());
-			}
-			
-			function remover(el) {
-				var id = $(el).parent().parent().find("td:eq(0)").text();
-				alert("Remover "+id)
-			}
-		</script>
 	</tiles:putAttribute>
 </tiles:insertDefinition>
