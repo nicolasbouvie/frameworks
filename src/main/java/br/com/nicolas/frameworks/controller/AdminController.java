@@ -94,7 +94,7 @@ public class AdminController {
 			case "grupo": repo = grupoRepo; break;
 			case "configuracao": repo = configuracaoRepo; break;
 			case "venda": repo = vendaRepo; break;
-			default: throw new IllegalArgumentException("Entidade inválida");
+			default: throw new IllegalArgumentException("Entidade invalida");
 		}
 		repo.delete(id);
 		return "redirect:/admin/"+entity;
