@@ -1,2 +1,2 @@
 # frameworks
-Aplicação para controle de vendas
+Aplicação para controle de vendas.
