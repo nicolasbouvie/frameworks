@@ -3,6 +3,7 @@ package br.com.nicolas.frameworks.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,7 +39,9 @@ public class HomeController {
 				Usuario usuario = (Usuario) user;
 				boolean admin = false;
 				for (GrantedAuthority grupo : usuario.getAuthorities()) {
-					if (StringUtils.equals(grupo.getAuthority(), "admin")) {
+					if (StringUtils.equals(grupo.getAuthority(), "admin")
+							|| StringUtils.equals(grupo.getAuthority(), "operacional")
+							|| StringUtils.equals(grupo.getAuthority(), "financeiro")) {
 						admin = true;
 						break;
 					}
@@ -58,15 +62,24 @@ public class HomeController {
 		return model;
 	}
 
-	@PreAuthorize("!hasRole('ROLE_ANONYMOUS')")
-	@RequestMapping(value = "/venda", method = RequestMethod.GET)
-	public ModelAndView vendaIndex() {
-		ModelAndView model = new ModelAndView();
-		Usuario user = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		model.addObject("vendas", vendaRepo.findByUsuario(user));
-		model.setViewName("admin/venda");
-		
-		return model;
+	@PreAuthorize("hasRole('operacional')")
+	@RequestMapping(value = "/venda/updateDataVenda/{id}", method = RequestMethod.POST)
+	public String updateDataVenda(@PathVariable Long id) {
+		Venda venda = vendaRepo.findOne(id);
+		venda.setDataVenda(new Date());
+		vendaRepo.save(venda);
+
+		return "redirect:/venda";
+	}
+
+	@PreAuthorize("hasRole('financeiro')")
+	@RequestMapping(value = "/venda/updateDataPagamento/{id}", method = RequestMethod.POST)
+	public String updateDataPagamento(@PathVariable Long id) {
+		Venda venda = vendaRepo.findOne(id);
+		venda.setDataPagamento(new Date());
+		vendaRepo.save(venda);
+
+		return "redirect:/venda";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)

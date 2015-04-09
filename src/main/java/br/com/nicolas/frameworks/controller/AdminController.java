@@ -70,7 +70,9 @@ public class AdminController {
 		Usuario user = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		boolean admin = false;
 		for (GrantedAuthority grupo : user.getAuthorities()) {
-			if (StringUtils.equals(grupo.getAuthority(), "admin")) {
+			if (StringUtils.equals(grupo.getAuthority(), "admin")
+				|| StringUtils.equals(grupo.getAuthority(), "operacional")
+				|| StringUtils.equals(grupo.getAuthority(), "financeiro")) {
 				admin = true;
 				model.addObject("vendas", vendaRepo.findAll());
 				model.addObject("usuarios", usuarioRepo.findAll());

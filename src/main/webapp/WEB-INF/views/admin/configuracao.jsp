@@ -1,6 +1,7 @@
 <%@page session="true"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <tiles:insertDefinition name="default">
 	<tiles:putAttribute name="body">
@@ -22,12 +23,16 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${configs}" var="config">
+					<fmt:formatDate value="${config.dataInicio}" pattern="dd/MM/yyyy" var="dataInicio"/>
+					<fmt:formatDate value="${config.dataFim}" pattern="dd/MM/yyyy" var="dataFim"/>
+					<fmt:formatNumber value="${config.valor}" maxFractionDigits="2" minFractionDigits="2" var="valor"></fmt:formatNumber>
+					<fmt:formatNumber value="${config.valorVenda}" maxFractionDigits="2" minFractionDigits="2" var="valorVenda"></fmt:formatNumber>
 					<tr>
 						<td class="f_id">${config.id}</td>
-						<td class="f_dataInicio">${config.dataInicio}</td>
-						<td class="f_dataFim">${not empty config.dataFim ? config.dataFim : '-'}</td>
-						<td class="f_valor">${config.valor}</td>
-						<td class="f_valorVenda">${config.valorVenda}</td>
+						<td class="f_dataInicio">${dataInicio}</td>
+						<td class="f_dataFim">${not empty config.dataFim ? dataFim : '-'}</td>
+						<td class="f_valor">${valor}</td>
+						<td class="f_valorVenda">${valorVenda}</td>
 						<td>
 							<button class="btn btn-primary btn-xs" type="button" onclick="editar(this)">
 								<span aria-hidden="true" class="glyphicon glyphicon-edit"></span>
